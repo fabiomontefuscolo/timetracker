@@ -3,11 +3,16 @@
     <head>
         <meta charset="utf-8">
         <title>TimeTracker</title>
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no" />
+        <meta name="mobile-web-app-capable" content="yes" />
 
         <link rel="stylesheet" href="libs/vendor/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="libs/vendor/bootstrap/dist/css/bootstrap-theme.min.css" />
 
-        <script type="text/javascript" src="libs/vendor/object.watch.js"></script>
+        <!-- It does not exists on Tiki -->
+        <script type="text/javascript" src="libs/vendor/moment/min/moment.min.js"></script>
+
+        <script type="text/javascript" src="libs/vendor/handlebars/handlebars.min.js"></script>
         <script type="text/javascript" src="libs/vendor/jquery/dist/jquery.min.js"></script>
         <script type="text/javascript" src="libs/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
 
@@ -61,23 +66,29 @@
                     </div>
 
                     <div class="col-md-4">
-                        <h3 class="text-center" id="demo-timer" bind="spenttime">00:00:00</h3>
-
+                        <p>Use controls below to control and save logs</p>
+                            
                         <div class="form-group text-center">
                             <div class="btn-group btn-group-lg">
-                                <button class="btn btn-xlarge btn-success">
-                                    <span class="glyphicon glyphicon-play"  ></span>
+                                <button class="btn btn-xlarge btn-success" timer="play">
+                                    <span class="glyphicon glyphicon-play"></span>
                                 </button>
-                                <button class="btn btn-large btn-warning">
-                                    <span class="glyphicon glyphicon-pause" ></span>
+
+                                <button class="btn btn-large btn-warning" timer="pause">
+                                    <span class="glyphicon glyphicon-pause"></span>
                                 </button>
-                                <button class="btn btn-large btn-info">
-                                    <span class="glyphicon glyphicon-floppy-disk" ></span>
+
+                                <button class="btn btn-large btn-info" timer="save">
+                                    <span class="glyphicon glyphicon-floppy-disk"></span>
                                 </button>
-                                <button class="btn btn-large btn-danger">
-                                    <span class="glyphicon glyphicon-trash" ></span>
+
+                                <button class="btn btn-large btn-danger" timer="discard">
+                                    <span class="glyphicon glyphicon-trash"></span>
                                 </button>
+
                             </div>
+
+                            <h3 class="text-center" id="demo-timer" bind="spenttime">00:00:00</h3>
                         </div>
                     </div>
                 </div>
