@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>TimeTracker</title>
+
+        <link rel="stylesheet" href="libs/vendor/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="libs/vendor/bootstrap/dist/css/bootstrap-theme.min.css" />
+
+        <script type="text/javascript" src="libs/vendor/object.watch.js"></script>
+        <script type="text/javascript" src="libs/vendor/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="libs/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+
+        <script type="text/javascript" src="libs/js/timetracker.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Tiki Time Tracker</h1>
+
+            <section>
+                <h2>Start a new task</h2>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <p>Provide some information for this task.</p>
+
+                        <div class="form-group">
+                            <label for="demo-title">Title</label>
+                            <input type="text" class="form-control" id="demo-title" bind="title" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="demo-project">Project</label>
+                            <input type="text" class="form-control" id="demo-project" bind="project "/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="demo-customer">Customer</label>
+                            <input type="text" class="form-control" id="demo-customer" bind="customer" />
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-4">
+                        <p>You can leave this fields and just press play.</p>
+
+                        <div class="form-group">
+                            <label for="demo-starttime">Start time</label>
+                            <input type="text" class="form-control" id="demo-starttime" bind="starttime" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="demo-endtime">End time</label>
+                            <input type="text" class="form-control" id="demo-endtime" bind="endtime" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="demo-spenttime">Spent time</label>
+                            <input type="text" class="form-control" id="demo-spenttime" bind="spenttime" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <h3 class="text-center" id="demo-timer" bind="spenttime">00:00:00</h3>
+
+                        <div class="form-group text-center">
+                            <div class="btn-group btn-group-lg">
+                                <button class="btn btn-xlarge btn-success">
+                                    <span class="glyphicon glyphicon-play"  ></span>
+                                </button>
+                                <button class="btn btn-large btn-warning">
+                                    <span class="glyphicon glyphicon-pause" ></span>
+                                </button>
+                                <button class="btn btn-large btn-info">
+                                    <span class="glyphicon glyphicon-floppy-disk" ></span>
+                                </button>
+                                <button class="btn btn-large btn-danger">
+                                    <span class="glyphicon glyphicon-trash" ></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section>
+                <h2>Summary</h2>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th rowspan="2">Date</th>
+                            <th colspan="4" class="text-center">Timer</th>
+                            <th rowspan="2">Customer</th>
+                            <th rowspan="2">Project</th>
+                            <th rowspan="2">Title</th>
+                        </tr>
+                        <tr>
+                            <th>Start</th>
+                            <th>End</th>
+                            <th>Spent</th>
+                            <th>Paused</th>
+                        </th>
+                    </thead>
+                    <tbody>
+                        <script type="text/x-handlebars-template">
+                            {{#each entry}}
+                            <tr>
+                                <td>{{ date }}</td>
+                                <td>{{ starttime }}</td>
+                                <td>{{ endtime }}</td>
+                                <td>{{ spenttime }}</td>
+                                <td>{{ pausedtime }}</td>
+                                <td>{{ customer }}</td>
+                                <td>{{ project }}</td>
+                                <td>{{ title }}</td>
+                            </tr>
+                            {{/each}}
+                        </script>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </body>
+</html>
