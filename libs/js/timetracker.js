@@ -8,9 +8,17 @@
 
     $.fn.timetracker = function(  ) {
         var $tracker = $(this);
+        var $display = $tracker.find('[role=render-area]');
+        var $tplEl = $tracker.find('script[role=template]');
+        var template = Handlebars.compile($tplEl.html());
 
         data.entry = data.entry || {};
         data.timer = data.timer || 'stopped'; // 'running', 'paused', 'stopped'
+
+        function showEntries() {
+            var html = template({'entries': (data.entries||[]) });
+            $display.html(html);
+        }
 
         function updateTimer(value) {
             var oldval = data.timer;
@@ -26,6 +34,13 @@
             $tracker.trigger('entry_update', [prop, oldval, value]);
             saveData();
             return {prop, value};
+        }
+
+        function saveEntry(entry) {
+            data.entry = {};
+            data.entries && data.entries.push(entry) || (data.entries=[entry]);
+            $tracker.find(':input[bind]').val('').keyup();
+            showEntries();
         }
 
         function transform(prop, value) {
@@ -70,6 +85,7 @@
             
             switch (action) {
                 case 'play':
+                    data.entry.date || updateEntry('date', moment().format('DD/MM/YYYY'))
                     data.entry.starttime || updateEntry('starttime', moment().format('HH:mm:ss'))
                     updateTimer('running');
                     break;
@@ -77,9 +93,7 @@
                     updateTimer('paused');
                     break;
                 case 'save':
-                    data.entries && data.entries.push(data.entry) || (data.entries=[data.entry]);
-                    data.entry = {};
-                    $tracker.find(':input[bind]').val('').keyup();
+                    saveEntry(data.entry);
                     updateTimer('stopped');
                     break;
             }
@@ -95,6 +109,8 @@
                 updateEntry('endtime',  moment().format('HH:mm:ss'));
             }
         }, 1000);
+
+        showEntries();
     }
     
     $(function(){

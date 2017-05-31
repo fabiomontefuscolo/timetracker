@@ -35,13 +35,13 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="demo-project">Project</label>
-                            <input type="text" class="form-control" id="demo-project" bind="project "/>
-                        </div>
-
-                        <div class="form-group">
                             <label for="demo-customer">Customer</label>
                             <input type="text" class="form-control" id="demo-customer" bind="customer" />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="demo-date">Date</label>
+                            <input type="text" class="form-control" id="demo-date" bind="date"/>
                         </div>
                     </div>
 
@@ -102,7 +102,6 @@
                             <th rowspan="2">Date</th>
                             <th colspan="4" class="text-center">Timer</th>
                             <th rowspan="2">Customer</th>
-                            <th rowspan="2">Project</th>
                             <th rowspan="2">Title</th>
                         </tr>
                         <tr>
@@ -112,9 +111,9 @@
                             <th>Paused</th>
                         </th>
                     </thead>
-                    <tbody>
-                        <script type="text/x-handlebars-template">
-                            {{#each entry}}
+                    <tbody role="render-area">
+                        <script type="text/x-handlebars-template" role="template">
+                            {{#each entries}}
                             <tr>
                                 <td>{{ date }}</td>
                                 <td>{{ starttime }}</td>
@@ -122,7 +121,6 @@
                                 <td>{{ spenttime }}</td>
                                 <td>{{ pausedtime }}</td>
                                 <td>{{ customer }}</td>
-                                <td>{{ project }}</td>
                                 <td>{{ title }}</td>
                             </tr>
                             {{/each}}
