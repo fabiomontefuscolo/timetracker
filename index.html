@@ -17,6 +17,17 @@
         <script type="text/javascript" src="libs/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
 
         <script type="text/javascript" src="libs/js/timetracker.js"></script>
+
+        <script type="text/javascript">
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js', {scope: '/'})
+                .then(function(reg) {
+                    console.log('Registration succeeded. Scope is ' + reg.scope);
+                }).catch(function(error) {
+                    console.log('Registration failed with ' + error);
+                });
+        }
+        </script>
     </head>
     <body>
         <div class="container">
